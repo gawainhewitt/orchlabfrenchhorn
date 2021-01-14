@@ -144,13 +144,36 @@ div.img img {
     float: left;
 }
 
+#select3 {
+
+    float: left;
+}
+
  /* The container must be positioned relative: */
- .custom-select {
+ .keymenu {
     position: relative;
     font-family: Arial;
   }
 
-  .custom-select select {
+ .scalemenu {
+    position: relative;
+    font-family: Arial;
+  }
+
+  .octavemenu {
+    position: relative;
+    font-family: Arial;
+  }
+
+  .keymenu select {
+    display: none; /*hide original SELECT element: */
+  }
+
+  .scalemenu select {
+    display: none; /*hide original SELECT element: */
+  }
+
+  .octavemenu select {
     display: none; /*hide original SELECT element: */
   }
 

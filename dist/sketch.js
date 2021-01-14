@@ -2,7 +2,6 @@ var synth = new Tone.PolySynth().toDestination();        // call a new tone synt
 var info = true;    // this tells us whether to display the info screen or not
 var notePlaying = [0,0,0,0,0,0,0,0,0]; // array to store if a note is playing - not using this at the moment, but might
 var ongoingTouches = []; // to store ongoing touches in for multitouch
-var notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5"];    // array containing our musical notes (tone.js will respond to these as is)
 const now = Tone.now(); // time variable to tell the tone.js when to play - i.e play now! (when function called for example)
 
 document.addEventListener("DOMContentLoaded", startup); // adding an event listener to the document which fires once the DOM is loaded and then triggers the startup function
@@ -77,6 +76,42 @@ function startup() {
     el.addEventListener("touchmove", handleMove, false);
     }
 
+}
+
+var notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5"];    // array containing our musical notes that we are currently using (tone.js will respond to these as is)
+var allTheNotes = ["C2", "C#2", "D2", "D#2", "E2", "F2", "F#2", "G2", "G#2", "A2", "A#2", "B2",
+                    "C3", "C#3", "D3", "D#3", "E3", "F3", "F#3", "G3", "G#3", "A3", "A#3", "B3",
+                    "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4",
+                    "C5", "C#5", "D5", "D#5", "E5", "F5", "F#5", "G5", "G#5", "A5", "A#5", "B5",
+                    "C6", "C#6", "D6", "D#6", "E6", "F6", "F#6", "G6", "G#6", "A6", "A#6", "B6"]; // all the notes available to us in the code
+var major = [1, 3, 5, 6, 8, 10, 12, 13, 15]; // intervals for a major scale for 9 notes
+var pentatonic = [1, 3, 5, 8, 10, 13, 15, 17, 20]; // intervals for a pentatonic scale for 9 notes
+var minor = [];
+var majorBlues = [];
+var minorBlues = [];
+var scales = ["default", pentatonic, major, minor, majorBlues, minorBlues];
+var scale = major; // this variable sets the default scale on load
+var theKey = 0; // this variable sets the default key on load
+
+function handleMenu(menu, index) { // function to handle the menu selections and change scales and keys
+  if(menu === "keymenu"){
+    theKey = index -1; // set the variable to the correct scale - the minus 1 is because of the default menu setting
+    console.log("the key is "+theKey); //debugging
+    for(var i = 0; i < 9; i++) {
+      var theNote = scale[i] + 24 + theKey; // the note plus the octave plus the offset from the key menu
+      notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
+    }
+  }else if(menu === "scalemenu"){
+    console.log("the scale is "+index);
+    scale = scales[index];
+    console.log(scale);
+    for(var i = 0; i < 9; i++) {
+      var theNote = scale[i] + 24 + theKey; // the note plus the octave plus the offset from the key menu
+      notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
+    }
+  } else {
+                          //octave switching here WORKING HERE
+  }
 }
 
   function handleStart(evt) { // this function handles touchstart
@@ -172,13 +207,16 @@ function startup() {
 
   // the following is to do with the select boxes and making them look pretty
 
-  // I think I might have to recode this for each box using different variables each time by the look of things - or perhaps better make a function
-  // also need to put first in each list as second so it can be selected
+
+selectBoxes("keymenu"); //make a pretty keymenu
+selectBoxes("scalemenu"); //make a pretty scalemenu
+selectBoxes("octavemenu"); //make a pretty octavemenu
+
+function selectBoxes(name) {
 
 var x, i, j, l, ll, selElmnt, a, b, c;
 /* Look for any elements with the class "custom-select": */
-var selectBoxName = "custom-select";
-x = document.getElementsByClassName(selectBoxName);
+x = document.getElementsByClassName(name);
 l = x.length;
 for (i = 0; i < l; i++) {
   selElmnt = x[i].getElementsByTagName("select")[0];
@@ -206,7 +244,8 @@ for (i = 0; i < l; i++) {
         for (i = 0; i < sl; i++) {
           if (s.options[i].innerHTML == this.innerHTML) {
             s.selectedIndex = i;
-            console.log(selectBoxName + (" ") + s.selectedIndex);  /// I'm WORKING HERE!
+            console.log(name + (" ") + s.selectedIndex); //debugging
+            handleMenu(name, s.selectedIndex);   // send the menu name and the index of the selection to the handlemenu function
             h.innerHTML = this.innerHTML;
             y = this.parentNode.getElementsByClassName("same-as-selected");
             yl = y.length;
@@ -231,6 +270,7 @@ for (i = 0; i < l; i++) {
     this.classList.toggle("select-arrow-active");
     //console.log(a.innerHTML);
   });
+}
 }
 
 function closeAllSelect(elmnt) {
