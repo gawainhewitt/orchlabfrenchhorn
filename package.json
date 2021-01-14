@@ -1,5 +1,5 @@
 {
-  "name": "orchlabcello",
+  "name": "orchlabfrenchhorn",
   "version": "1.0.0",
   "description": "",
   "main": "sketch.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gawainhewitt/orchlabcello.git"
+    "url": "git+https://github.com/gawainhewitt/orchlabfrenchhorn.git"
   },
   "keywords": [],
   "author": "Gawain Hewitt",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gawainhewitt/orchlabcello/issues"
+    "url": "https://github.com/gawainhewitt/orchlabfrenchhorn/issues"
   },
-  "homepage": "https://github.com/gawainhewitt/orchlabcello#readme"
+  "homepage": "https://github.com/gawainhewitt/orchlabfrenchhorno#readme"
 }
