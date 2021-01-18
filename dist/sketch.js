@@ -27,44 +27,44 @@ var whichKey = [0,0,0,0,0,0,0,0,0];
 document.addEventListener("DOMContentLoaded", startup); // adding an event listener to the document which fires once the DOM is loaded and then triggers the startup function
 
 function startup() {
-  if (document.images) {   // preload the images for speed
-    img0 = new Image();
-    img0.src = "images/image0.jpg";
-    img0_2 = new Image();
-    img0_2.src = "images/image0_2.jpg";
-    img1 = new Image();
-    img1.src = "images/image1.jpg";
-    img1_2 = new Image();
-    img1_2.src = "images/image1_2.jpg";
-    img2 = new Image();
-    img2.src = "images/image2.jpg";
-    img2_2 = new Image();
-    img2_2.src = "images/image2_2.jpg";
-    img3 = new Image();
-    img3.src = "images/image3.jpg";
-    img3_2 = new Image();
-    img3_2.src = "images/image3_2.jpg";
-    img4 = new Image();
-    img4.src = "images/image4.jpg";
-    img4_2 = new Image();
-    img4_2.src = "images/image4_2.jpg";
-    img5 = new Image();
-    img5.src = "images/image5.jpg";
-    img5_2 = new Image();
-    img5_2.src = "images/image5_2.jpg";
-    img6 = new Image();
-    img6.src = "images/image6.jpg";
-    img6_2 = new Image();
-    img6_2.src = "images/image6_2.jpg";
-    img7 = new Image();
-    img7.src = "images/image7.jpg";
-    img7_2 = new Image();
-    img7_2.src = "images/image7_2.jpg";
-    img8 = new Image();
-    img8.src = "images/image8.jpg";
-    img8_2 = new Image();
-    img8_2.src = "images/image8_2.jpg";
-  }
+  // if (document.images) {   // preload the images for speed
+  //   img0 = new Image();
+  //   img0.src = "images/image0.jpg";
+  //   img0_2 = new Image();
+  //   img0_2.src = "images/image0_2.jpg";
+  //   img1 = new Image();
+  //   img1.src = "images/image1.jpg";
+  //   img1_2 = new Image();
+  //   img1_2.src = "images/image1_2.jpg";
+  //   img2 = new Image();
+  //   img2.src = "images/image2.jpg";
+  //   img2_2 = new Image();
+  //   img2_2.src = "images/image2_2.jpg";
+  //   img3 = new Image();
+  //   img3.src = "images/image3.jpg";
+  //   img3_2 = new Image();
+  //   img3_2.src = "images/image3_2.jpg";
+  //   img4 = new Image();
+  //   img4.src = "images/image4.jpg";
+  //   img4_2 = new Image();
+  //   img4_2.src = "images/image4_2.jpg";
+  //   img5 = new Image();
+  //   img5.src = "images/image5.jpg";
+  //   img5_2 = new Image();
+  //   img5_2.src = "images/image5_2.jpg";
+  //   img6 = new Image();
+  //   img6.src = "images/image6.jpg";
+  //   img6_2 = new Image();
+  //   img6_2.src = "images/image6_2.jpg";
+  //   img7 = new Image();
+  //   img7.src = "images/image7.jpg";
+  //   img7_2 = new Image();
+  //   img7_2.src = "images/image7_2.jpg";
+  //   img8 = new Image();
+  //   img8.src = "images/image8.jpg";
+  //   img8_2 = new Image();
+  //   img8_2.src = "images/image8_2.jpg";
+  // }
   for(var i = 0; i < 9; i++) {    // loop through the divs containing images and add event listeners
     var el = document.getElementById("image"+i);
     el.addEventListener("touchstart", handleStart, false);
@@ -92,43 +92,79 @@ function handleKeyDown(e) {
   var key = e.code;
   console.log("keydown "+key); //debugging
 
-  switch(key) {
+  switch(key) {  /// working here! - retriggering keys so remove the play synth and do a for loop on the array to play
     case "KeyQ" :
-      playSynth(0);
-      whichKey[0] = 1;
-      break;
+      if(whichKey[0] === 0) {
+        playSynth(0);
+        whichKey[0] = 1;
+        break;
+      } else {
+        break;
+      }
     case "KeyW" :
-      playSynth(1);
-      whichKey[1] = 1;
-      break;
+      if(whichKey[1] === 0) {
+        playSynth(1);
+        whichKey[1] = 1;
+        break;
+      } else {
+        break;
+      }
     case "KeyE" :
-      playSynth(2);
-      whichKey[2] = 1;
-      break;
+      if(whichKey[2] === 0) {
+        playSynth(2);
+        whichKey[2] = 1;
+        break;
+      } else {
+        break;
+      }
     case "KeyR" :
-      playSynth(3);
-      whichKey[3] = 1;
-      break;
+      if(whichKey[3] === 0) {
+        playSynth(3);
+        whichKey[3] = 1;
+        break;
+      } else {
+        break;
+      }
     case "KeyT" :
-      playSynth(4);
-      whichKey[4] = 1;
-      break;
+      if(whichKey[4] === 0) {
+        playSynth(4);
+        whichKey[4] = 1;
+        break;
+      } else {
+        break;
+      }
     case "KeyY" :
-      playSynth(5);
-      whichKey[5] = 1;
-      break;
+      if(whichKey[5] === 0) {
+        playSynth(5);
+        whichKey[5] = 1;
+        break;
+      } else {
+        break;
+      }
     case "KeyU" :
-      playSynth(6);
-      whichKey[6] = 1;
-      break;
+      if(whichKey[6] === 0) {
+        playSynth(6);
+        whichKey[6] = 1;
+        break;
+      } else {
+        break;
+      }
     case "KeyI" :
-      playSynth(7);
-      whichKey[7] = 1;
-      break;
+      if(whichKey[7] === 0) {
+        playSynth(7);
+        whichKey[7] = 1;
+        break;
+      } else {
+        break;
+      }
     case "KeyO" :
-      playSynth(8);
-      whichKey[8] = 1;
-      break;
+      if(whichKey[8] === 0) {
+        playSynth(8);
+        whichKey[8] = 1;
+        break;
+      } else {
+        break;
+      }
   }
 }
 
@@ -450,11 +486,10 @@ synth.set(  // setup the synth - this is audio stuff really
 
 function playSynth(i) {
   synth.triggerAttack(notes[i], Tone.now());
-  document.getElementById('i'+i).src='images/image'+i+'_2.jpg';
-
+  document.getElementById(`i${i}`).src=`images/image${i}_2.jpg`; //using template literals to embed expressions within a string
 }
 
 function stopSynth(i) {
   synth.triggerRelease(notes[i], Tone.now());
-  document.getElementById('i'+i).src='images/image'+i+'.jpg';
+  document.getElementById(`i${i}`).src=`images/image${i}.jpg`;
 }
