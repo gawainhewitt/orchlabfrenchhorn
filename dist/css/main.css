@@ -137,16 +137,19 @@ div.img img {
 #select1 {
 
     float: left;
+    width: 32.6%;
 }
 
 #select2 {
 
     float: left;
+    width: 32.6%;
 }
 
 #select3 {
 
     float: left;
+    width: 32.6%;
 }
 
  /* The container must be positioned relative: */

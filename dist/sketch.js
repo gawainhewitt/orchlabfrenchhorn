@@ -3,31 +3,28 @@ var info = true;    // this tells us whether to display the info screen or not
 var notePlaying = [0,0,0,0,0,0,0,0,0]; // array to store if a note is playing - not using this at the moment, but might
 var ongoingTouches = []; // to store ongoing touches in for multitouch
 const now = Tone.now(); // time variable to tell the tone.js when to play - i.e play now! (when function called for example)
+var notes = ["C3", "D3", "E3", "G3", "A3", "C4", "D4", "E4", "G4"];    // array containing our musical notes that we are currently using (tone.js will respond to these as is)
+var allTheNotes =  ["C1", "C#1", "D1", "D#1", "E1", "F1", "F#1", "G1", "G#1", "A1", "A#1", "B1",
+                    "C2", "C#2", "D2", "D#2", "E2", "F2", "F#2", "G2", "G#2", "A2", "A#2", "B2",
+                    "C3", "C#3", "D3", "D#3", "E3", "F3", "F#3", "G3", "G#3", "A3", "A#3", "B3",
+                    "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4",
+                    "C5", "C#5", "D5", "D#5", "E5", "F5", "F#5", "G5", "G#5", "A5", "A#5", "B5",
+                    "C6", "C#6", "D6", "D#6", "E6", "F6", "F#6", "G6", "G#6", "A6", "A#6", "B6",
+                    "C7", "C#7", "D7", "D#7", "E7", "F7", "F#7", "G7", "G#7", "A7", "A#7", "B7",
+                    "C8", "C#8", "D8", "D#8", "E8", "F8", "F#8", "G8", "G#8", "A8", "A#8", "B8"]; // all the notes available to us in the code
+var major = [0,2,4,5,7,9,11,12,14]; // intervals for a major scale for 9 notes
+var pentatonic = [0,2,4,7,9,12,14,16,19]; // intervals for a pentatonic scale for 9 notes
+var minor = [0,2,3,5,7,8,10,12,14]; // intervals for a minor scale for 9 notes
+var majorBlues = [0,2,3,4,7,9,12,14,15]; // intervals for a major blues scale for 9 notes
+var minorBlues = [0,3,5,6,7,10,12,15,17]; // intervals for a minor scale for 9 notes
+var scales = ["default", pentatonic, major, minor, majorBlues, minorBlues];
+var scale = pentatonic; // this variable sets the default scale on load
+var theKey = 0; // this variable sets the default key on load
+var octave = 24; //set the default octave on load
+var whichClicked = [0,0,0,0,0,0,0,0,0];
+var whichKey = [0,0,0,0,0,0,0,0,0];
 
 document.addEventListener("DOMContentLoaded", startup); // adding an event listener to the document which fires once the DOM is loaded and then triggers the startup function
-
-synth.set(  // setup the synth - this is audio stuff really
-  {
-    "volume": 0,
-    "detune": 0,
-    "portamento": 0,
-    "envelope": {
-      "attack": 2,
-      "attackCurve": "linear",
-      "decay": 0.1,
-      "decayCurve": "exponential",
-      "release": 2,
-      "releaseCurve": "exponential",
-      "sustain": 0.3
-    },
-    "oscillator": {
-      "partialCount": 0,
-      "partials": [],
-      "phase": 0,
-      "type": "triangle"
-    }
-  }
-);
 
 function startup() {
   if (document.images) {   // preload the images for speed
@@ -75,43 +72,142 @@ function startup() {
     el.addEventListener("touchcancel", handleCancel, false);
     el.addEventListener("touchmove", handleMove, false);
     }
+  for(var i = 0; i < 9; i++) {    // loop through the divs containing images and add event listeners
+    var el = document.getElementById("image"+i);
+    el.addEventListener("mousedown", handleMouseDown);
+    el.addEventListener("mouseup", handleMouseUp);
+    }
+
+    document.addEventListener('keydown', handleKeyDown); //add listener for keyboard input
+    document.addEventListener('keyup', handleKeyUp); //add listener for keyboard input
 
 }
 
-var notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5"];    // array containing our musical notes that we are currently using (tone.js will respond to these as is)
-var allTheNotes = ["C2", "C#2", "D2", "D#2", "E2", "F2", "F#2", "G2", "G#2", "A2", "A#2", "B2",
-                    "C3", "C#3", "D3", "D#3", "E3", "F3", "F#3", "G3", "G#3", "A3", "A#3", "B3",
-                    "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4",
-                    "C5", "C#5", "D5", "D#5", "E5", "F5", "F#5", "G5", "G#5", "A5", "A#5", "B5",
-                    "C6", "C#6", "D6", "D#6", "E6", "F6", "F#6", "G6", "G#6", "A6", "A#6", "B6"]; // all the notes available to us in the code
-var major = [1, 3, 5, 6, 8, 10, 12, 13, 15]; // intervals for a major scale for 9 notes
-var pentatonic = [1, 3, 5, 8, 10, 13, 15, 17, 20]; // intervals for a pentatonic scale for 9 notes
-var minor = [];
-var majorBlues = [];
-var minorBlues = [];
-var scales = ["default", pentatonic, major, minor, majorBlues, minorBlues];
-var scale = major; // this variable sets the default scale on load
-var theKey = 0; // this variable sets the default key on load
+function handleKeyDown(e) {
 
-function handleMenu(menu, index) { // function to handle the menu selections and change scales and keys
-  if(menu === "keymenu"){
-    theKey = index -1; // set the variable to the correct scale - the minus 1 is because of the default menu setting
-    console.log("the key is "+theKey); //debugging
-    for(var i = 0; i < 9; i++) {
-      var theNote = scale[i] + 24 + theKey; // the note plus the octave plus the offset from the key menu
-      notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
-    }
-  }else if(menu === "scalemenu"){
-    console.log("the scale is "+index);
-    scale = scales[index];
-    console.log(scale);
-    for(var i = 0; i < 9; i++) {
-      var theNote = scale[i] + 24 + theKey; // the note plus the octave plus the offset from the key menu
-      notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
-    }
-  } else {
-                          //octave switching here WORKING HERE
+  if(info === true) { // is the info screen on?
+    Tone.start(); // we need this to allow audio to start. probably best to put it on a different button soon though
+    info = false;
   }
+  var key = e.code;
+  console.log("keydown "+key); //debugging
+
+  switch(key) {
+    case "KeyQ" :
+      playSynth(0);
+      whichKey[0] = 1;
+      break;
+    case "KeyW" :
+      playSynth(1);
+      whichKey[1] = 1;
+      break;
+    case "KeyE" :
+      playSynth(2);
+      whichKey[2] = 1;
+      break;
+    case "KeyR" :
+      playSynth(3);
+      whichKey[3] = 1;
+      break;
+    case "KeyT" :
+      playSynth(4);
+      whichKey[4] = 1;
+      break;
+    case "KeyY" :
+      playSynth(5);
+      whichKey[5] = 1;
+      break;
+    case "KeyU" :
+      playSynth(6);
+      whichKey[6] = 1;
+      break;
+    case "KeyI" :
+      playSynth(7);
+      whichKey[7] = 1;
+      break;
+    case "KeyO" :
+      playSynth(8);
+      whichKey[8] = 1;
+      break;
+  }
+}
+
+function handleKeyUp(e) {
+  var key = e.code;
+  console.log("keyup "+key); //debugging
+  switch(key) {
+    case "KeyQ" :
+      stopSynth(0);
+      whichKey[0] = 0;
+      break;
+    case "KeyW" :
+      stopSynth(1);
+      whichKey[1] = 0;
+      break;
+    case "KeyE" :
+      stopSynth(2);
+      whichKey[2] = 0;
+      break;
+    case "KeyR" :
+      stopSynth(3);
+      whichKey[3] = 0;
+      break;
+    case "KeyT" :
+      stopSynth(4);
+      whichKey[4] = 0;
+      break;
+    case "KeyY" :
+      stopSynth(5);
+      whichKey[5] = 0;
+      break;
+    case "KeyU" :
+      stopSynth(6);
+      whichKey[6] = 0;
+      break;
+    case "KeyI" :
+      stopSynth(7);
+      whichKey[7] = 0;
+      break;
+    case "KeyO" :
+      stopSynth(8);
+      whichKey[8] = 0;
+      break;
+  }
+
+}
+
+function handleMouseDown(evt) {
+
+  if(info === true) { // is the info screen on?
+    Tone.start(); // we need this to allow audio to start. probably best to put it on a different button soon though
+    info = false;
+  }
+
+  evt.preventDefault();
+
+  var elem = this.id; //returns the id of the element that triggered the mouse event
+  console.log("mouseDown id "+elem); //debugging
+
+  for(var i = 0; i < 9; i++) { // for loop to check which element it is and get a number to send to the synth
+    if(elem === "image"+i){ // this looks confusing because the id name also contains "i" - see that HTML
+      playSynth(i); // call the playSynth function
+      whichClicked[i] = 1; //store the click in an array as a boolean true
+    }
+  }
+
+}
+
+function handleMouseUp() {
+
+  var elem = this.id; //returns the id of the element that triggered the mouse event
+  console.log("mouseUp id "+elem); //debugging
+  for(var i = 0; i < 9; i++) { // for loop to check which click is ending and get a number to send to the synth
+    if(whichClicked[i] === 1){
+      stopSynth(i); // call the stopSynth function
+      whichClicked[i] = 0;//set the click state in an array as a boolean false
+    }
+  }
+
 }
 
   function handleStart(evt) { // this function handles touchstart
@@ -299,8 +395,58 @@ function closeAllSelect(elmnt) {
 then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
 
+function handleMenu(menu, index) { // function to handle the menu selections and change scales and keys
+  if(menu === "keymenu"){
+    theKey = index -1; // set the variable to the correct scale - the minus 1 is to offset it to allow for the default menu setting
+    console.log("the key is "+theKey); //debugging
+    for(var i = 0; i < 9; i++) {
+      var theNote = scale[i] + octave + theKey; // the note plus the octave plus the offset from the key menu
+      notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
+    }
+  }else if(menu === "scalemenu"){
+    console.log("the scale is "+index);
+    scale = scales[index];
+    console.log(scale);
+    for(var i = 0; i < 9; i++) {
+      var theNote = scale[i] + octave + theKey; // the note plus the octave plus the offset from the key menu
+      notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
+    }
+  } else {
+    console.log("the octave is "+index);
+    octave = index * 12;                      //octave switching here WORKING HERE
+    for(var i = 0; i < 9; i++) {
+      var theNote = scale[i] + octave + theKey; // the note plus the octave plus the offset from the key menu
+      notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
+    }
+  }
+}
+
+
 
 //following is to do with sound and image management
+
+synth.set(  // setup the synth - this is audio stuff really
+  {
+    "volume": 0,
+    "detune": 0,
+    "portamento": 0,
+    "envelope": {
+      "attack": 2,
+      "attackCurve": "linear",
+      "decay": 0.1,
+      "decayCurve": "exponential",
+      "release": 2,
+      "releaseCurve": "exponential",
+      "sustain": 0.3
+    },
+    "oscillator": {
+      "partialCount": 0,
+      "partials": [],
+      "phase": 0,
+      "type": "triangle"
+    }
+  }
+);
 
 function playSynth(i) {
   synth.triggerAttack(notes[i], Tone.now());
