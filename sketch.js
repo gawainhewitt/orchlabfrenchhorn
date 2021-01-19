@@ -452,7 +452,7 @@ function playSynth(i) {
   document.getElementById(`i${i}`).style.backgroundColor="magenta";
 }
 
-var col = ["rgb(255, 255, 0)", "rgb(150, 150, 0)", "rgb(255, 255, 0)", "rgb(150, 150, 0)", "rgb(255, 255, 0)", "rgb(150, 150, 0)", "rgb(255, 255, 0)", "rgb(150, 150, 0)", "rgb(255, 255, 0)"]; //colour of button
+var col = ["rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)"]; //colour of button
 
 function stopSynth(i) {
   synth.triggerRelease(notes[i], Tone.now());
