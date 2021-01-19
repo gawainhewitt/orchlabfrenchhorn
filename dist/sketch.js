@@ -27,44 +27,6 @@ var whichKey = [0,0,0,0,0,0,0,0,0];
 document.addEventListener("DOMContentLoaded", startup); // adding an event listener to the document which fires once the DOM is loaded and then triggers the startup function
 
 function startup() {
-  if (document.images) {   // preload the images for speed - this is a nasty hack to get this working nicely on firefox. I am also using html preload for all other browsers which is better for them
-    img0 = new Image();
-    img0.src = "images/image0.jpg";
-    img0_2 = new Image();
-    img0_2.src = "images/image0_2.jpg";
-    img1 = new Image();
-    img1.src = "images/image1.jpg";
-    img1_2 = new Image();
-    img1_2.src = "images/image1_2.jpg";
-    img2 = new Image();
-    img2.src = "images/image2.jpg";
-    img2_2 = new Image();
-    img2_2.src = "images/image2_2.jpg";
-    img3 = new Image();
-    img3.src = "images/image3.jpg";
-    img3_2 = new Image();
-    img3_2.src = "images/image3_2.jpg";
-    img4 = new Image();
-    img4.src = "images/image4.jpg";
-    img4_2 = new Image();
-    img4_2.src = "images/image4_2.jpg";
-    img5 = new Image();
-    img5.src = "images/image5.jpg";
-    img5_2 = new Image();
-    img5_2.src = "images/image5_2.jpg";
-    img6 = new Image();
-    img6.src = "images/image6.jpg";
-    img6_2 = new Image();
-    img6_2.src = "images/image6_2.jpg";
-    img7 = new Image();
-    img7.src = "images/image7.jpg";
-    img7_2 = new Image();
-    img7_2.src = "images/image7_2.jpg";
-    img8 = new Image();
-    img8.src = "images/image8.jpg";
-    img8_2 = new Image();
-    img8_2.src = "images/image8_2.jpg";
-  }
   for(var i = 0; i < 9; i++) {    // loop through the divs containing images and add event listeners
     var el = document.getElementById("image"+i);
     el.addEventListener("touchstart", handleStart, false);
@@ -486,10 +448,14 @@ synth.set(  // setup the synth - this is audio stuff really
 
 function playSynth(i) {
   synth.triggerAttack(notes[i], Tone.now());
-  document.getElementById(`i${i}`).src=`images/image${i}_2.jpg`; //using template literals to embed expressions within a string
+  //document.getElementById(`i${i}`).src=`images/image${i}_2.jpg`; //using template literals to embed expressions within a string
+  document.getElementById(`i${i}`).style.backgroundColor="magenta";
 }
+
+var col = ["rgb(255, 255, 0)", "rgb(0, 38, 255)", "rgb(0, 255, 42)", "rgb(0, 204, 255)", "rgb(183, 0, 255)", "rgb(255, 136, 0)", "rgb(255, 35, 35)", "rgb(255, 217, 0)", "rgb(119, 0, 255)"]; //colour of button
 
 function stopSynth(i) {
   synth.triggerRelease(notes[i], Tone.now());
-  document.getElementById(`i${i}`).src=`images/image${i}.jpg`;
+  //document.getElementById(`i${i}`).src=`images/image${i}.jpg`;
+  document.getElementById(`i${i}`).style.backgroundColor=col[i];
 }
