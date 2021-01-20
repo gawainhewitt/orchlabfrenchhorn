@@ -45,12 +45,24 @@ function startup() {
 
 }
 
-function handleKeyDown(e) {
+function hideLoadScreen() {
+  document.getElementById('loadscreen').style.visibility="hidden";
+  var welcome = document.getElementById('welcomescreen');
+  welcome.style.visibility="visible";
+  welcome.addEventListener("click", startHorn);
+  welcome.addEventListener("touchstart", startHorn);
+}
 
+function startHorn() {
+  document.getElementById('welcomescreen').style.visibility="hidden";
   if(info === true) { // is the info screen on?
     Tone.start(); // we need this to allow audio to start. probably best to put it on a different button soon though
     info = false;
   }
+}
+
+function handleKeyDown(e) {
+
   var key = e.code;
   console.log("keydown "+key); //debugging
 
@@ -423,13 +435,41 @@ function handleMenu(menu, index) { // function to handle the menu selections and
 
 //following is to do with sound and image management
 
+const sampler = new Tone.Sampler({
+	urls: {
+		B2: "horn-tone-b2.mp3",
+    C3: "horn-tone-c3.mp3",
+    E3: "horn-tone-e3.mp3",
+    G3: "horn-tone-g3.mp3",
+    A3: "horn-tone-a3.mp3",
+    C4: "horn-tone-c4.mp3"
+	},
+	baseUrl: "/sounds/",
+	onload: () => {
+    hideLoadScreen();
+  }
+})
+
+const reverb = new Tone.Reverb({
+  decay: 3,
+  predelay: 0,
+  wet: 0.5
+}).toDestination();
+
+sampler.connect(reverb);
+
+
+sampler.set({
+  release: 8
+});
+
 synth.set(  // setup the synth - this is audio stuff really
   {
     "volume": 0,
     "detune": 0,
     "portamento": 0,
     "envelope": {
-      "attack": 2,
+      "attack": 40,
       "attackCurve": "linear",
       "decay": 0.1,
       "decayCurve": "exponential",
@@ -437,25 +477,17 @@ synth.set(  // setup the synth - this is audio stuff really
       "releaseCurve": "exponential",
       "sustain": 0.3
     },
-    "oscillator": {
-      "partialCount": 0,
-      "partials": [],
-      "phase": 0,
-      "type": "triangle"
-    }
   }
 );
 
 function playSynth(i) {
-  synth.triggerAttack(notes[i], Tone.now());
-  //document.getElementById(`i${i}`).src=`images/image${i}_2.jpg`; //using template literals to embed expressions within a string
+  sampler.triggerAttack(notes[i], Tone.now());
   document.getElementById(`i${i}`).style.backgroundColor="magenta";
 }
 
 var col = ["rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)"]; //colour of button
 
 function stopSynth(i) {
-  synth.triggerRelease(notes[i], Tone.now());
-  //document.getElementById(`i${i}`).src=`images/image${i}.jpg`;
+  sampler.triggerRelease(notes[i], Tone.now());
   document.getElementById(`i${i}`).style.backgroundColor=col[i];
 }
