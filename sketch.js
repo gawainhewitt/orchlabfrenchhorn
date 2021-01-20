@@ -51,7 +51,7 @@ function hideLoadScreen() {
   welcome.style.visibility="visible";
   welcome.addEventListener("click", startHorn);
   welcome.addEventListener("touchstart", startHorn);
-  welcome.addEventListener('keydown', startHorn);
+  welcome.addEventListener('keypress', startHorn);
 }
 
 function startHorn() {
