@@ -67,6 +67,14 @@ h1 {
   color: white;
 }
 
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20em, 0;
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+}
+
 img {
     width: 100%;
     height: auto;
