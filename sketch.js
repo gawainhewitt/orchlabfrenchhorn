@@ -496,7 +496,7 @@ function playSynth(i) {
   document.getElementById(`i${i}`).style.backgroundColor="magenta";
 }
 
-var col = ["rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)", "rgb(200, 200, 0)", "rgb(255, 255, 0)"]; //colour of button
+var col = ["rgb(255, 255, 0)", "rgb(0,0,255)", "rgb(255, 255, 0)", "rgb(0,0,255)", "rgb(255, 255, 0)", "rgb(0,0,255)", "rgb(255, 255, 0)", "rgb(0,0,255)", "rgb(255, 255, 0)"]; //colour of button
 
 function stopSynth(i) {
   sampler.triggerRelease(notes[i], Tone.now());
