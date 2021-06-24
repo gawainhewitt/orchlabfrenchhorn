@@ -42,29 +42,29 @@ body {
 }
 
 #welcomescreen {
-  position: absolute;
-  width: 100%;
+
+  width: 97.8%;
   height: 100%;
-  background-color: rgb(95, 94, 179);
+  background-color: rgb(245, 247, 247);
   z-index: 3;
-  opacity: 0.9;
   visibility: hidden;
 }
 
 h1 {
   font-family: Arial, Helvetica, sans-serif;
-  padding: 20em, 0;
+  padding: 0em 0em;
   text-align: center;
   font-size: 5em;
-  color: white;
+  color: black;
 }
 
 #welcometext {
   font-family: Arial, Helvetica, sans-serif;
-  padding: 20em, 0;
+  padding: 2px;
   text-align: center;
-  font-size: 2em;
-  color: white;
+  font-size: 6em;
+  color: black;
+  margin: 0.2em;
 }
 
 #clicktostart {
@@ -72,15 +72,15 @@ h1 {
   padding: 20em, 0;
   text-align: center;
   font-size: 3em;
-  color: white;
+  color: black;
 }
 
 p {
   font-family: Arial, Helvetica, sans-serif;
-  padding: 20em, 0;
+  padding: 2px;
   text-align: center;
-  font-size: 1.5em;
-  color: white;
+  font-size: 3em;
+  color: black;
 }
 
 img {
@@ -91,6 +91,21 @@ img {
 
 span.clear { clear: left; display: block; } /* clears the float thus ensuring the images remain within the container div */
 
+#orchlablogo {
+  width: 33%;
+  margin: 0px auto;
+}
+
+#lpologo {
+  width: 25%;
+  margin: 0% 0% 15% 15%;
+  float: left;
+}
+#dmlogo {
+  width: 20%;
+  margin: 0% 15% 15% 0%;
+  float: right;
+}
 
 #image0 {
     margin: 0px;
@@ -100,6 +115,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color: rgb(255, 255, 0);
+    visibility: hidden;
 }
 #image1 {
     margin: 0px;
@@ -109,6 +125,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color: rgb(200, 200, 0);
+    visibility: hidden;
 }
 
 #image2 {
@@ -119,6 +136,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color:  rgb(255, 255, 0);
+    visibility: hidden;
 }
 
 #image3 {
@@ -129,6 +147,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color: rgb(200, 200, 0);
+    visibility: hidden;
 }
 
 #image4 {
@@ -139,6 +158,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color:  rgb(255, 255, 0);
+    visibility: hidden;
 }
 
 #image5 {
@@ -149,6 +169,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color: rgb(200, 200, 0);
+    visibility: hidden;
 }
 
 #image6 {
@@ -159,6 +180,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color:  rgb(255, 255, 0);
+    visibility: hidden;
 }
 
 #image7 {
@@ -169,6 +191,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color: rgb(200, 200, 0);
+    visibility: hidden;
 }
 
 #image8 {
@@ -179,6 +202,7 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
     float: left;
     text-align: center;
     background-color:  rgb(255, 255, 0);
+    visibility: hidden;
 }
 
 div.img img {

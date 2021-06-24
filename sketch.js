@@ -54,7 +54,12 @@ function hideLoadScreen() {
 }
 
 function startHorn() {
-  document.getElementById('welcomescreen').style.visibility="hidden";
+  var welcome = document.getElementById('welcomescreen');
+  welcome.style.visibility="hidden";
+  welcome.innerHTML = "";
+  for(let i = 0; i<9; i++){
+    document.getElementById(`image${i}`).style.visibility="visible";
+  }
   if(info === true) { // is the info screen on?
     Tone.start(); // we need this to allow audio to start. probably best to put it on a different button soon though
     info = false;
