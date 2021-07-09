@@ -69,9 +69,10 @@ function startHorn() {
 function handleKeyDown(e) {
 
   if(info === true) { // is the info screen on?
-    Tone.start(); // we need this to allow audio to start. probably best to put it on a different button soon though
-    info = false;
-    document.getElementById('welcomescreen').style.visibility="hidden";
+    // Tone.start(); // we need this to allow audio to start. probably best to put it on a different button soon though
+    // info = false;
+    // document.getElementById('welcomescreen').style.visibility="hidden";
+    startHorn();
   }
 
   var key = e.code;
