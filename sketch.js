@@ -78,7 +78,7 @@ function handleKeyDown(e) {
   console.log("keydown "+key); //debugging
 
   switch(key) {  /// working here! - retriggering keys so remove the play synth and do a for loop on the array to play
-    case "KeyQ" :
+    case "KeyZ" :
       if(whichKey[0] === 0) {
         playSynth(0);
         whichKey[0] = 1;
@@ -86,7 +86,7 @@ function handleKeyDown(e) {
       } else {
         break;
       }
-    case "KeyW" :
+    case "KeyX" :
       if(whichKey[1] === 0) {
         playSynth(1);
         whichKey[1] = 1;
@@ -94,7 +94,7 @@ function handleKeyDown(e) {
       } else {
         break;
       }
-    case "KeyE" :
+    case "KeyC" :
       if(whichKey[2] === 0) {
         playSynth(2);
         whichKey[2] = 1;
@@ -102,7 +102,7 @@ function handleKeyDown(e) {
       } else {
         break;
       }
-    case "KeyR" :
+    case "KeyV" :
       if(whichKey[3] === 0) {
         playSynth(3);
         whichKey[3] = 1;
@@ -110,7 +110,7 @@ function handleKeyDown(e) {
       } else {
         break;
       }
-    case "KeyT" :
+    case "KeyB" :
       if(whichKey[4] === 0) {
         playSynth(4);
         whichKey[4] = 1;
@@ -118,7 +118,7 @@ function handleKeyDown(e) {
       } else {
         break;
       }
-    case "KeyY" :
+    case "KeyN" :
       if(whichKey[5] === 0) {
         playSynth(5);
         whichKey[5] = 1;
@@ -126,7 +126,7 @@ function handleKeyDown(e) {
       } else {
         break;
       }
-    case "KeyU" :
+    case "KeyM" :
       if(whichKey[6] === 0) {
         playSynth(6);
         whichKey[6] = 1;
@@ -134,7 +134,7 @@ function handleKeyDown(e) {
       } else {
         break;
       }
-    case "KeyI" :
+    case "Comma" :
       if(whichKey[7] === 0) {
         playSynth(7);
         whichKey[7] = 1;
@@ -142,7 +142,7 @@ function handleKeyDown(e) {
       } else {
         break;
       }
-    case "KeyO" :
+    case "Period" :
       if(whichKey[8] === 0) {
         playSynth(8);
         whichKey[8] = 1;
@@ -157,39 +157,39 @@ function handleKeyUp(e) {
   var key = e.code;
   console.log("keyup "+key); //debugging
   switch(key) {
-    case "KeyQ" :
+    case "KeyZ" :
       stopSynth(0);
       whichKey[0] = 0;
       break;
-    case "KeyW" :
+    case "KeyX" :
       stopSynth(1);
       whichKey[1] = 0;
       break;
-    case "KeyE" :
+    case "KeyC" :
       stopSynth(2);
       whichKey[2] = 0;
       break;
-    case "KeyR" :
+    case "KeyV" :
       stopSynth(3);
       whichKey[3] = 0;
       break;
-    case "KeyT" :
+    case "KeyB" :
       stopSynth(4);
       whichKey[4] = 0;
       break;
-    case "KeyY" :
+    case "KeyN" :
       stopSynth(5);
       whichKey[5] = 0;
       break;
-    case "KeyU" :
+    case "KeyM" :
       stopSynth(6);
       whichKey[6] = 0;
       break;
-    case "KeyI" :
+    case "Comma" :
       stopSynth(7);
       whichKey[7] = 0;
       break;
-    case "KeyO" :
+    case "Period" :
       stopSynth(8);
       whichKey[8] = 0;
       break;
