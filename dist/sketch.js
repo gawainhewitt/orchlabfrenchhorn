@@ -245,7 +245,7 @@ function handleMouseUp() {
     var elem = evt.targetTouches[0].target.id; //returns the id of the element that triggered the touch
     console.log("image id = "+elem); //debugging
     for(var i = 0; i < 9; i++) { // for loop to check which element it is and get a number to send to the synth
-      if(elem === "i"+i){ // this looks confusing because the id name also contains "i" - see that HTML
+      if(elem === "i"+i || elem === "image"+i){ // this looks confusing because the id name also contains "i" - see that HTML
         playSynth(i); // call the playSynth function
       }
     }
@@ -277,7 +277,7 @@ function handleMouseUp() {
     var elem = touches[0].target.id //returns the id of the element that triggered the touch (that has just ended)
     console.log("ended image id = "+elem); //debugging
     for(var i = 0; i < 9; i++) { //get a number to end the right note
-        if(elem === "i"+i){
+        if(elem === "i"+i || elem === "image"+i){
           stopSynth(i); // call stopSynth
         }
       }
@@ -448,7 +448,7 @@ function changeScaleText() {
   for (let i = 0; i < 9; i++) {
     let element = `#image${i}`;
     let note = notes[i];
-    document.querySelector(element).innerHTML = `<h2>${note.slice(0, -1)}</h2>`;
+    document.querySelector(element).innerHTML = `<h2 id="i${i}">${note.slice(0, -1)}</h2>`;
   }
 }
 
