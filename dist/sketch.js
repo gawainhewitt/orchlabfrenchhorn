@@ -57,9 +57,7 @@ function startHorn() {
   var welcome = document.getElementById('welcomescreen');
   welcome.style.visibility="hidden";
   welcome.innerHTML = "";
-  for(let i = 0; i<9; i++){
-    document.getElementById(`image${i}`).style.visibility="visible";
-  }
+  document.getElementById("notesDiv").style.display = "grid";
   if(info === true) { // is the info screen on?
     Tone.start(); // we need this to allow audio to start. probably best to put it on a different button soon though
     info = false;
@@ -214,6 +212,7 @@ function handleMouseDown(evt) {
     if(elem === "image"+i){ // this looks confusing because the id name also contains "i" - see that HTML
       playSynth(i); // call the playSynth function
       whichClicked[i] = 1; //store the click in an array as a boolean true
+      console.log(`whichClicked ${whichClicked}`)
     }
   }
 
@@ -494,12 +493,12 @@ synth.set(  // setup the synth - this is audio stuff really
 
 function playSynth(i) {
   sampler.triggerAttack(notes[i], Tone.now());
-  document.getElementById(`i${i}`).style.backgroundColor="magenta";
+  document.getElementById(`image${i}`).style.backgroundColor="magenta";
 }
 
 var col = ["rgb(255, 255, 0)", "rgb(0,0,255)", "rgb(255, 255, 0)", "rgb(0,0,255)", "rgb(255, 255, 0)", "rgb(0,0,255)", "rgb(255, 255, 0)", "rgb(0,0,255)", "rgb(255, 255, 0)"]; //colour of button
 
 function stopSynth(i) {
   sampler.triggerRelease(notes[i], Tone.now());
-  document.getElementById(`i${i}`).style.backgroundColor=col[i];
+  document.getElementById(`image${i}`).style.backgroundColor=col[i];
 }

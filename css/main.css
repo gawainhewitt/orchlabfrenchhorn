@@ -107,102 +107,71 @@ span.clear { clear: left; display: block; } /* clears the float thus ensuring th
   float: right;
 }
 
+#notesDiv {
+  display: none;
+  grid-template-columns: 33% 33% 33%;
+}
+
 #image0 {
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
     text-align: center;
+    height: 30vh;
     background-color: rgb(255, 255, 0);
-    visibility: hidden;
+    
 }
 #image1 {
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
     text-align: center;
+    height: 30vh;
     background-color: rgb(0,0,255);
-    visibility: hidden;
+    
 }
 
 #image2 {
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
     text-align: center;
+    height: 30vh;
     background-color:  rgb(255, 255, 0);
-    visibility: hidden;
+    
 }
 
 #image3 {
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
     text-align: center;
+    height: 30vh;
     background-color: rgb(0,0,255);
-    visibility: hidden;
+    
 }
 
 #image4 {
-    margin: 10;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
-    text-align: center;
-    background-color:  rgb(255, 255, 0);
-    visibility: hidden;
+  text-align: center;
+  height: 30vh;
+  background-color:  rgb(255, 255, 0);
+    
 }
 
 #image5 {
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
     text-align: center;
+    height: 30vh;
     background-color: rgb(0,0,255);
-    visibility: hidden;
+    
 }
 
 #image6 {
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
     text-align: center;
+    height: 30vh;
     background-color:  rgb(255, 255, 0);
-    visibility: hidden;
+    
 }
 
 #image7 {
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
     text-align: center;
+    height: 30vh;
     background-color: rgb(0,0,255);
-    visibility: hidden;
+    
 }
 
 #image8 {
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    width: 32.6%;
-    float: left;
     text-align: center;
+    height: 30vh;
     background-color:  rgb(255, 255, 0);
-    visibility: hidden;
+    
 }
 
 div.img img {
