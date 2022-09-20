@@ -424,6 +424,7 @@ function handleMenu(menu, index) { // function to handle the menu selections and
       var theNote = scale[i] + octave + theKey; // the note plus the octave plus the offset from the key menu
       notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
     }
+    changeScaleText();
   }else if(menu === "scalemenu"){
     console.log("the scale is "+index);
     scale = scales[index];
@@ -432,6 +433,7 @@ function handleMenu(menu, index) { // function to handle the menu selections and
       var theNote = scale[i] + octave + theKey; // the note plus the octave plus the offset from the key menu
       notes[i] = allTheNotes[theNote]; // pick the notes from the all the notes array
     }
+    changeScaleText();
   } else {
     console.log("the octave is "+index);
     octave = index * 12;                      //octave switching here WORKING HERE
@@ -442,6 +444,13 @@ function handleMenu(menu, index) { // function to handle the menu selections and
   }
 }
 
+function changeScaleText() {
+  for (let i = 0; i < 9; i++) {
+    let element = `#image${i}`;
+    let note = notes[i];
+    document.querySelector(element).innerHTML = `<h2>${note.slice(0, -1)}</h2>`;
+  }
+}
 
 
 //following is to do with sound and image management
