@@ -448,7 +448,7 @@ function changeScaleText() {
   for (let i = 0; i < 9; i++) {
     let element = `#image${i}`;
     let note = notes[i];
-    document.querySelector(element).innerHTML = `<h2>${note.slice(0, -1)}</h2>`;
+    document.querySelector(element).innerHTML = `<h2 id="i${i}>${note.slice(0, -1)}</h2>`;
   }
 }
 
