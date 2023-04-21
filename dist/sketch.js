@@ -3,7 +3,8 @@ var info = true;    // this tells us whether to display the info screen or not
 var notePlaying = [0,0,0,0,0,0,0,0,0]; // array to store if a note is playing - not using this at the moment, but might
 var ongoingTouches = []; // to store ongoing touches in for multitouch
 const now = Tone.now(); // time variable to tell the tone.js when to play - i.e play now! (when function called for example)
-var notes = ["C3", "D3", "E3", "G3", "A3", "C4", "D4", "E4", "G4"];    // array containing our musical notes that we are currently using (tone.js will respond to these as is)
+// var notes = ["C3", "D3", "E3", "G3", "A3", "C4", "D4", "E4", "G4"];    // array containing our musical notes that we are currently using (tone.js will respond to these as is)
+var notes = ["F3", "G3", "G#3", "A#3", "C4", "C#4", "D#4", "F4", "G4"];    // array containing our musical notes that we are currently using (tone.js will respond to these as is)
 var allTheNotes =  ["C1", "C#1", "D1", "D#1", "E1", "F1", "F#1", "G1", "G#1", "A1", "A#1", "B1",
                     "C2", "C#2", "D2", "D#2", "E2", "F2", "F#2", "G2", "G#2", "A2", "A#2", "B2",
                     "C3", "C#3", "D3", "D#3", "E3", "F3", "F#3", "G3", "G#3", "A3", "A#3", "B3",
@@ -18,8 +19,8 @@ var minor = [0,2,3,5,7,8,10,12,14]; // intervals for a minor scale for 9 notes
 var majorBlues = [0,2,3,4,7,9,12,14,15]; // intervals for a major blues scale for 9 notes
 var minorBlues = [0,3,5,6,7,10,12,15,17]; // intervals for a minor scale for 9 notes
 var scales = ["default", pentatonic, major, minor, majorBlues, minorBlues];
-var scale = pentatonic; // this variable sets the default scale on load
-var theKey = 0; // this variable sets the default key on load
+var scale = minor; // this variable sets the default scale on load
+var theKey = 5; // this variable sets the default key on load
 var octave = 24; //set the default octave on load
 var whichClicked = [0,0,0,0,0,0,0,0,0];
 var whichKey = [0,0,0,0,0,0,0,0,0];
